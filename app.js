@@ -126,17 +126,21 @@ function displayFriends() {
             // console.log(mushrooms.length);
             if (!mushrooms.length) {
                 message = 'No mushrooms, go hunt for more!';
-                displayMessage();
             }
             // 2. Friend is already fully satisfied (3), set a message to pick another friend
             else if (friend.satisfied) {
                 message = 'Pick another friend!';
+
+                // 3. Feed friend mushroom:
+            } else {
+                // a. "pop" a mushroom off the mushrooms array
+                mushrooms.pop();
+
+                // b. increase friend.satisfied by 1
+                friend.satisfied++;
+                // c. set a message that the friend enjoyed the mushroom,
+                //    include the friend name and mushroom type in the message
             }
-            // 3. Feed friend mushroom:
-            // a. "pop" a mushroom off the mushrooms array
-            // b. increase friend.satisfied by 1
-            // c. set a message that the friend enjoyed the mushroom,
-            //    include the friend name and mushroom type in the message
 
             displayMessage();
             displayMushrooms();
