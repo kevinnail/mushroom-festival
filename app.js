@@ -13,7 +13,7 @@ const friendsSection = document.getElementById('friends-section');
 /* State */
 let message = '';
 let mushrooms = [{ type: 'porcini' }, { type: 'chanterelle' }, { type: 'morel' }];
-
+console.log(mushrooms);
 let friends = [
     { name: 'Wilbur', satisfied: 0 },
     { name: 'Miss Piggy', satisfied: 0 },
@@ -48,8 +48,8 @@ huntMushroomsButton.addEventListener('click', () => {
         };
         // > add the new mushroom to the mushrooms state
         mushrooms.push(mushroom);
-        console.log('mushrooms found: ' + found);
-        console.log('mushroom array: ' + 'array index: ' + i + ' ' + mushrooms[i].type);
+        // console.log('mushrooms found: ' + found);
+        // console.log('mushroom array: ' + 'array index: ' + i + ' ' + mushrooms[i].type);
     }
 
     message = foundMessage[found];
@@ -65,15 +65,21 @@ addFriendForm.addEventListener('submit', (e) => {
     // > create a new friend, with a "name" property that
     // is populated from `formData.get('name')` and a
     // "satisfied" property with an initial value of 0
-
+    const friend = {
+        name: formData.get('name'),
+        satisfied: 0,
+    };
     // > add the new friend to the friends array
+    friends.push(friend);
 
     // > set the message state to let the user know
     // they invited a new friend to the festival, include the friend's
     // name in the message
+    message = `${friend.name} has been invited to the festival`;
 
     addFriendForm.reset();
-
+    displayFriends();
+    displayMessage();
     // > call the display functions that need to re-display
 });
 
