@@ -14,7 +14,6 @@ const friendsSection = document.getElementById('friends-section');
 let message = '';
 // let mushrooms = [{ type: 'porcini' }, { type: 'chanterelle' }, { type: 'morel' }];
 let mushrooms = [];
-console.log(mushrooms);
 let friends = [
     { name: 'Wilbur', satisfied: 0 },
     { name: 'Miss Piggy', satisfied: 0 },
@@ -128,17 +127,19 @@ function displayFriends() {
                 message = 'No mushrooms, go hunt for more!';
             }
             // 2. Friend is already fully satisfied (3), set a message to pick another friend
-            else if (friend.satisfied) {
+            else if (friend.satisfied === 3) {
                 message = 'Pick another friend!';
 
                 // 3. Feed friend mushroom:
             } else {
                 // a. "pop" a mushroom off the mushrooms array
-                mushrooms.pop();
+                const mushroom = mushrooms.pop();
 
                 // b. increase friend.satisfied by 1
                 friend.satisfied++;
+
                 // c. set a message that the friend enjoyed the mushroom,
+                message = `${friend.name} really enjoyed their ${mushroom.type} mushroom!`;
                 //    include the friend name and mushroom type in the message
             }
 
