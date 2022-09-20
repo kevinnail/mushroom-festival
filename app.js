@@ -48,8 +48,6 @@ huntMushroomsButton.addEventListener('click', () => {
         };
         // > add the new mushroom to the mushrooms state
         mushrooms.push(mushroom);
-        // console.log('mushrooms found: ' + found);
-        // console.log('mushroom array: ' + 'array index: ' + i + ' ' + mushrooms[i].type);
     }
 
     message = foundMessage[found];
@@ -78,9 +76,10 @@ addFriendForm.addEventListener('submit', (e) => {
     message = `${friend.name} has been invited to the festival`;
 
     addFriendForm.reset();
+
+    // > call the display functions that need to re-display
     displayFriends();
     displayMessage();
-    // > call the display functions that need to re-display
 });
 
 sayGoodbyeButton.addEventListener('click', () => {
@@ -108,7 +107,6 @@ function displayMushrooms() {
     // then get them to display- push new mushrooms to mushroom array
     // create a mushroom element using the renderMushroom function
     // append it to the container
-    mushroomContainer.innerHTML = '';
 
     for (let mushroom of mushrooms) {
         const mushEl = renderMushroom(mushroom);
@@ -125,7 +123,6 @@ function displayFriends() {
         friendEl.addEventListener('click', () => {
             // > handle the three possible outcomes:
             // 1. No mushrooms, set a message to go hunt for more
-            // console.log(mushrooms.length);
             if (!mushrooms.length) {
                 message = 'No mushrooms, go hunt for more!';
             }
